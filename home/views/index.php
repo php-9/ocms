@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<base href="<?php echo base_url('home/views').'/';?>">
+	<title><?=$this->cfg['title']?></title>
+	<meta name="keywords" content="<?=$this->cfg['keywords']?>" />
+	<meta name="description" content="<?=$this->cfg['description']?>">	
+	<link rel="stylesheet" href="skins/main.css">
+	<script src="skins/jquery-1.11.1.min.js"></script>
+	<script src="skins/layer/layer.js"></script>
+
+	<style >
+	#slider{overflow:hidden;width:1200px;height:453px;position: relative;}
+	#slider .pics{width:1200px;height:453px}
+	#slider .pics li{height:453px;width:1200px;float:left;}
+	#slider #snav {position:absolute;bottom: 0;height: 35px;width:1200px; overflow: hidden;}
+	
+	#slider #snav li{float: left;margin-right: 2px; height: 35px;line-height: 35px; width: 238px;text-align: center;color:#acb0b3;color:#FFF;background: #acb0b3;
+		background:rgba(172,176,179,0.5);
+		filter:progid:DXImageTransform.Microsoft.gradient(startcolorstr=#7F000000,endcolorstr=#7F000000);
+	}
+	#slider #snav li.on{background:#132563; color:#ffd701;}
+	</style>
+</head>
+<body>
+
+	<?php $this->load->view('head')?>
+	<div id="scroll">
+	</div>
+	<div id="main">
+		<div class="ad l">
+			
+			<p>首创营销系统和生产系统课程，真正能够帮助企业一把手提高策略及执行，</p>
+			<p>提升企业业绩已经涉及<span>4000个</span>细分行业，<span>1万</span>多家企业，每年帮企业创造百亿利润。</p>
+		</div>
+		<div class="list l">
+			<ul>
+				<li>
+					<a href="javascript:;" class="thumb"><img src="skins/images/case1.jpg" alt=""></a>
+					<div class="title">保力生产系统</div>
+					<p>三星下一代旗舰机型的名称并未确定，目前暂定为Galaxy S7，并且在整体风格上会延续三星S6的设计元素，仅会进行一些小小的改动</p>
+					<div class="more"><a href="javascript:;">更多详情 》</a></div>
+				</li>
+				<li>
+									<a href="javascript:;" class="thumb"><img src="skins/images/case1.jpg" alt=""></a>
+									<div class="title">保力生产系统</div>
+									<p>三星下一代旗舰机型的名称并未确定，目前暂定为Galaxy S7，并且在整体风格上会延续三星S6的设计元素，仅会进行一些小小的改动</p>
+									<div class="more"><a href="javascript:;">更多详情 》</a></div>
+				</li>
+			</ul>
+			<div class="case">
+				<h2>全国开课时间</h2>
+				<h4><a href="javascript:;">临沂</a> | <a href="javascript:;">济南</a> | <a href="javascript:;">聊城</a></h4>
+				<p>课程：“扬帆号”10大营销策略顾问班</p>
+				<p>地址：济南</p>
+				<p>时间：12月8-10日</p>
+				<p>讲师：化保力</p>
+				<a class="listen" href="javascript:;"><img src="skins/images/btn1.jpg" alt=""></a>
+				
+			</div>
+			<div class="c"></div>
+		</div>
+		<div class="ad2 l">
+
+		</div>
+		<div class="say l">
+			<dl>
+				<dt><img src="skins/images/s101.png" alt=""></dt>
+				<dd class='t'>张景文</dd>
+				<dd>人力资源系统专业顾问</dd>
+				<p>张老师先后主讲企业内训和公开课程二百百余堂次累讲...</p>
+				<a href="javascript:;" class="btn1">更多介绍</a><a href="javascript:;" class="btn2">咨询专家</a>
+			</dl>
+			<dl>
+				<dt><img src="skins/images/s101.png" alt=""></dt>
+				<dd class='t'>张景文</dd>
+				<dd>人力资源系统专业顾问</dd>
+				<p>张老师先后主讲企业内训和公开课程二百百余堂次累讲...</p>
+				<a href="javascript:;" class="btn1">更多介绍</a><a href="javascript:;" class="btn2">咨询专家</a>
+			</dl>
+			<div class="first">
+				<div class="ray">
+					<h2>保力顾问总裁兼首席-化保力</h2>
+					<p>20年的领导经验；10年的内训操作经验；</p>
+					<p>千家企业实操案例；百家企业培训顾问；</p>
+					<h3>
+						<a href="javascript:;" class='btns1'>更多介绍</a>
+						<a href="javascript:;" class='btns2'>咨询专家</a>
+					</h3>
+				</div>
+			</div>
+			<dl>
+				<dt><img src="skins/images/s101.png" alt=""></dt>
+				<dd class='t'>张景文</dd>
+				<dd>人力资源系统专业顾问</dd>
+				<p>张老师先后主讲企业内训和公开课程二百百余堂次累讲...</p>
+				<a href="javascript:;" class="btn1">更多介绍</a><a href="javascript:;" class="btn2">咨询专家</a>
+			</dl>
+			<dl>
+				<dt><img src="skins/images/s101.png" alt=""></dt>
+				<dd class='t'>张景文</dd>
+				<dd>人力资源系统专业顾问</dd>
+				<p>张老师先后主讲企业内训和公开课程二百百余堂次累讲...</p>
+				<a href="javascript:;" class="btn1">更多介绍</a><a href="javascript:;" class="btn2">咨询专家</a>
+			</dl>
+			
+		</div>
+
+		<div class="ad3 l">
+			
+		</div>
+		<div class="ad4 l">
+			<div id="slider">
+				<ul class="pics">
+					<li><img alt="" src="skins/images/lanren01.jpg" /></li>
+					<li><img alt="" src="skins/images/lanren02.jpg" /></li>
+					<li><img alt="" src="skins/images/lanren03.jpg" /></li>
+					<li><img alt="" src="skins/images/lanren04.jpg" /></li>
+					<li><img alt="" src="skins/images/lanren05.jpg" /></li>
+				</ul>
+				<ul id="snav">
+
+					<li onmouseover="setTimeout(function(){lanrenzhijia.slider.pos(0)},300)">玻璃杯电商行业</li>
+					<li onmouseover="setTimeout(function(){lanrenzhijia.slider.pos(1)},300)">传统食品行业</li>
+					<li onmouseover="setTimeout(function(){lanrenzhijia.slider.pos(2)},300)">电机设备行业</li>
+					<li onmouseover="setTimeout(function(){lanrenzhijia.slider.pos(3)},300)">包装塑料行业</li>
+					<li onmouseover="setTimeout(function(){lanrenzhijia.slider.pos(4)},300)">板材木业行业</li>
+				</ul>
+				<div class="c"></div>
+			</div>
+			
+		</div>
+		<div class="ad5 l">
+			
+		</div>
+		<div class="course l">
+			<ul>
+				<div style="float:left;">
+					<li>
+						<h2><a href="javascript:;">课前辅导</a></h2>
+						<h3>向新学员介绍课程体系、理清学习思路</h3>
+						<h4><a href="javascript:;"><img src="skins/images/c1.jpg" alt=""></a></h4>
+					</li>
+					<li>
+						<h2><a href="javascript:;">大课座谈</a></h2>
+						<h3>开课期间对学员疑问给与解答</h3>
+						<h4><a href="javascript:;"><img src="skins/images/c2.jpg" alt=""></a></h4>
+					</li>
+				</div>
+				
+				<div class="imp"  style="float:left;">
+					<h2><a href="javascript:;">保力争霸</a></h2>
+					<h3>保力争霸不仅仅是一个PK活动，<br/>
+						它是一群基于有着共同愿景、共同使命的<br/>
+						牛商团队，抱团一起去实现梦想的道场。
+					</h3>
+					<h4><a href="javascript:;"><img src="skins/images/c3.jpg" alt=""></a></h4>
+				</div>
+
+				<div style="float:left;">
+					<li>
+						<h2><a href="javascript:;">迎新会</a></h2>
+						<h3>老学员带新学员，知道如何快落地</h3>
+						<h4><a href="javascript:;"><img src="skins/images/c4.jpg" alt=""></a></h4>
+					</li>
+					<li>
+						<h2><a href="javascript:;">保力分享会</a></h2>
+						<h3>老学员带新学员，知道如何快落地</h3>
+						<h4><a href="javascript:;"><img src="skins/images/c5.jpg" alt=""></a></h4>
+					</li>
+				</div>
+
+				<div class="c"></div>
+
+			</ul>
+		</div>
+		<div class="ad6 l">
+			
+		</div>
+		<div class="news l">
+			<div class="subnav">
+				<ul>
+					<li class="on"><a href="javascript:;">保利动态</a></li>
+					<li><a href="javascript:;">课程要点呈现</a></li>
+					<li><a href="javascript:;">企业培训课程</a></li>
+					<li><a href="javascript:;">每日快报</a></li>
+					<li><a href="javascript:;">资料下载</a></li>
+				</ul>
+			</div>
+
+			<div class="bd">
+				<dl>
+					<dt><a href="javascript:;"><img src="skins/images/n2.jpg" alt=""></a></dt>
+					<dd><a href="javascript:;">保力顾问188届操作班实录：学员获询盘的</a></dd>
+					<p>保力顾问188届操作班实录：学员获询盘的保力顾问188届操作班实录：学员获询盘的保力顾问188届操作班实录：学员获询盘的保力顾问188届操作班实录：学员获询盘的保力顾问188届操作班实录：学员获询盘的保力顾问188届操作班实录：学员获询盘的</p>
+				</dl>
+				<div class="thumb">
+					<a href="javascript:;"><img src="skins/images/n3.jpg" alt=""></a>
+				</div>
+				<ul>
+					<li><span>2015-10-12</span><a href="javascript:;">实战网络营销操作班实战网络营销操作班实战网络营销操作班</a></li>
+					<li><span>2015-10-12</span><a href="javascript:;">实战网络营销操作班实战网络营销操作班实战网络营销操作班</a></li>
+					<li><span>2015-10-12</span><a href="javascript:;">实战网络营销操作班实战网络营销操作班实战网络营销操作班</a></li>
+					<li><span>2015-10-12</span><a href="javascript:;">实战网络营销操作班实战网络营销操作班实战网络营销操作班</a></li>
+				</ul>
+			</div>
+			
+		</div>
+
+		<div class="ad7">
+			<div class="l"><a class="btn" href="javascript:;"></a></div>
+			
+		</div>
+
+
+	</div>
+
+	<div id="foot-index">
+		
+	</div>
+
+	<div id="shao">
+	    <img src="skins/images/shao.png" alt="扫一扫">
+	</div>
+
+	<div id="sheng">
+	    <img src="skins/images/sheng.png" alt="申请试听">
+	</div>
+
+	<div class="site_kf">
+	    <div class="qq"><a href="javascript:;"><img src="skins/images/q1.png" alt=""></a></div>
+	    <div class="qq"><a href="javascript:;"><img src="skins/images/q2.png" alt=""></a></div>
+	    <div class="qq"><a href="javascript:;"><img src="skins/images/q3.png" alt=""></a></div>
+	    <div class="tele">
+	        <p><strong>全国咨询热线</strong></p>
+	        <p>0539-7207711</p>
+	        
+	    </div>
+	</div>
+
+	<style>
+	    .site_kf{width: 100px; height: 400px;position:absolute;top:200px;right: 10px;}
+	    .site_kf .qq{width: 100px;height: 100px; margin-bottom: 5px;}
+	    .site_kf .tele{color:#cf0a0a;}
+	    .site_kf .tele p{height: 30px; line-height: 30px;text-align: center;font-size: 14px;}
+	    #shao{width: 722px;height: 454px;background: #fff;display: none;overflow: hidden;}
+	    #sheng{width: 740px;height: 452px;background: #fff;display: none;overflow: hidden;}
+	</style>
+
+	<script>
+	$('#top .link').click(function(){
+
+	        layer.open({
+
+	                type: 1,
+	                title: false,
+	                //closeBtn: 1, //不显示关闭按钮
+	                shift: 2,
+	                shadeClose: true, //开启遮罩关闭
+	                content: $('#shao'),
+	                area: ['722px', '454px']
+	                
+	            });
+
+	});
+	$('.case .listen').click(function(){
+
+	        layer.open({
+
+	                type: 1,
+	                title: false,
+	                //closeBtn: 0, //不显示关闭按钮
+	                shift: 2,
+	                shadeClose: true, //开启遮罩关闭
+	                content: $('#sheng'),
+	                area: ['740px', '452px']
+	                
+	            });
+
+	})
+
+	$('.ad7 .btn').click(function(){
+
+	        layer.open({
+
+	                type: 1,
+	                title: false,
+	                //closeBtn: 0, //不显示关闭按钮
+	                shift: 2,
+	                shadeClose: true, //开启遮罩关闭
+	                content: $('#sheng'),
+	                area: ['740px', '452px']
+	                
+	            });
+
+	})
+
+	$('.site_kf .qq a').click(function(){
+
+	        layer.open({
+
+	                type: 1,
+	                title: false,
+	                //closeBtn: 1, //不显示关闭按钮
+	                shift: 2,
+	                shadeClose: true, //开启遮罩关闭
+	                content: $('#shao'),
+	                area: ['722px', '454px']
+	                
+	            });
+
+	});
+
+	$('.news .subnav a').hover(function(){
+	    $('.news .subnav li').removeClass('on');
+	    $(this).parent().addClass('on');
+	});
+
+
+	$(function() { 
+	$(window).scroll(function() { 
+	var top = $(window).scrollTop()+200; 
+
+	$(".site_kf").css({top: top + "px" }); 
+	}); 
+	}); 
+	    
+	</script>
+
+	
+</body>
+</html>
+
+<script>
+var lanrenzhijia = {}, H$ = function(id){return document.getElementById(id)}, H$$ = function(c,p){return p.getElementsByTagName(c)}
+lanrenzhijia.slider = function(){
+	return{
+		init:function(id,options){
+			var ul = this.u = H$$('ul',H$(id))[0], li = H$$('li',ul); this.l=li.length; this.index = 0;
+			if(options.navId&&options.curClass){this.nav = H$$('li',H$(options.navId)), this.c = options.curClass;}
+			this.a=options.auto||0; this.v=options.vertical||0;H$(id).style.overflow = 'hidden';H$(id).style.position = 'relative';ul.style.position='absolute';
+			if(this.v){ul.style.top=0; this.h=options.height||li[0].offsetHeight; ul.style.height=(this.l*this.h)+'px';}
+			else{ul.style.left=0; this.w=options.width||li[0].offsetWidth; ul.style.width=(this.l*this.w)+'px';}
+			this.pos(options.index||0,this.a?1:0);
+		},
+		
+		pos:function(pos,a){
+			clearInterval(this.u.posAnim); clearInterval(this.u.auto);
+			var curPos=this.v?parseInt(this.u.style.top):parseInt(this.u.style.left),
+			correctPos=this.v?pos*this.h:pos*this.w, 
+			direction = correctPos>Math.abs(curPos)?1:-1;
+			correctPos*=-1; 
+			this.index = pos;
+			if(this.nav){for(var i=0;i<this.l;i++){this.nav[i].className = i==pos?this.c:''}}
+			this.u.posAnim = setInterval(function(){lanrenzhijia.slider.anim(correctPos,direction,a)},10);
+		},
+		
+		anim:function(des,dir,a){
+			var curPos=this.v?parseInt(this.u.style.top):parseInt(this.u.style.left);
+			if(curPos == des){
+				clearInterval(this.u.posAnim);
+				if(a||this.a){lanrenzhijia.slider.auto()}
+			}
+			else{
+				var v=curPos-Math.ceil(Math.abs(des-curPos)*.07)*dir+'px';
+				this.v?this.u.style.top=v:this.u.style.left=v;
+			}
+		},
+		
+		auto:function(){
+			this.u.auto=setInterval(function(){lanrenzhijia.slider.move(1,1)},this.a*1000)
+		},
+		
+		move:function(n,a){
+			var num=this.index+n, i=n==1?num==this.l?0:num:num<0?this.l-1:num; lanrenzhijia.slider.pos(i,a);
+		}
+	};
+}();
+</script>
+<script>
+lanrenzhijia.slider.init('slider',{	
+	auto:3,
+	vertical:1,
+	navId:'snav',
+	curClass:'on',
+	index:0});
+</script>
