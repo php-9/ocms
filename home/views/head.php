@@ -11,7 +11,7 @@
 <div id="top1">
   <div class="l">
     <div class="logo">
-      <a href="<?= site_url('welcome/index')?>"></a>
+      <a href="<?= $this->cfg['home_url']?>"></a>
     </div>
     <div class="tel">
       
@@ -21,7 +21,7 @@
 </div>
 <div id="nav">
   <ul class="l">
-    <li><a href="../../">首 页</a></li>
+    <li><a href="<?= $this->cfg['home_url']?>">首 页</a></li>
     <?php foreach ($this->menu as $v):?>
                        <?php if($v['pid']==0){ ?>
                        <li><a href="<?=$v['url']?>"><?=$v['name']?></a></li>

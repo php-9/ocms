@@ -99,8 +99,12 @@
                   <div class="col-sm-10">
                           <select name="ilink"  class="form-control">
                             <option value="0">请选择</option>
-                            <?php foreach($cats as $v):?>
-                            <option value="<?php echo $v['id']?>" <?php if($cat['ilink']==$v['id']) echo 'selected=selected';?>>
+                            <?php foreach($ilinks as $v):?>
+                            <option value="<?php echo $v['id']?>" <?php if($cat['ilink']==$v['id']) echo 'selected=selected';?>
+
+                            <?php if($v['id']==$cat['id']) echo 'disabled';?>
+
+                            >
                               <?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']).$v['name']?>
                             </option>
                             <?php endforeach?>                              

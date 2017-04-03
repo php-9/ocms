@@ -88,7 +88,7 @@
                     <div class="col-sm-10">
                             <select name="ilink"  class="form-control">
                               <option value="0">请选择</option>
-                              <?php foreach($cats as $v):?>
+                              <?php foreach($ilinks as $v):?>
                               <option value="<?php echo $v['id']?>"><?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']).$v['name']?></option>
                               <?php endforeach?>                              
                             </select>

@@ -84,7 +84,23 @@
                   <td>
                     <a href="<?php echo site_url('c=column&m=update&cat_id=').$v['id']?>" class="btn btn-primary btn-sm">修改</a> 
                     <a href="<?php echo site_url('c=column&m=del&cat_id=').$v['id']?>" onclick="javascript:if(!confirm('确认要删除 [<?php echo $v['name']?>] 吗?')){return false;};" class="btn btn-danger btn-sm">删除</a> 
-                    <a href="<?php echo '../../index.php?c=column&m=col&cat_id='.$v['id']?>" target="_blank" title="预览栏目" class="btn btn-default btn-sm">预览</a>
+                    <a href="
+                    <?php
+                    switch ($v['attr']) {
+                       case '2':
+                         echo $v['elink'].'" target="_blank';
+                         break;
+                       case '3':
+                         echo '../../index.php?c=column&m=col&cat_id='.$v['ilink'];
+                         break;
+                       
+                       default:
+                         echo '../../index.php?c=column&m=col&cat_id='.$v['id'];
+                         break;
+                     } 
+                    
+                    ?>
+                    " target="_blank" title="预览栏目" class="btn btn-default btn-sm">预览</a>
                   </td>
                </tr>
 

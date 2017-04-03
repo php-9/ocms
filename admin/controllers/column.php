@@ -42,6 +42,15 @@ class Column extends Admin_Controller
             
             $data['cats']=$this->cat_model->all('column');
 
+            //内链
+            $ilinks=array();
+            foreach ($data['cats'] as $v) {
+                if($v['attr']=='0' || $v['attr']=='1'){
+                    $ilinks[]=$v;
+                }
+            }
+            $data['ilinks']=$ilinks;
+
 
             
             
@@ -93,6 +102,15 @@ class Column extends Admin_Controller
             $id=$_GET['cat_id']; 
         	$data['cats']=$this->cat_model->all('column');        	
         	$data['cat']=$this->cat_model->one('column',$id);
+
+            //内链
+            $ilinks=array();
+            foreach ($data['cats'] as $v) {
+                if($v['attr']=='0' || $v['attr']=='1'){
+                    $ilinks[]=$v;
+                }
+            }
+            $data['ilinks']=$ilinks;
 
         	$this->load->view('column_edit',$data);
 

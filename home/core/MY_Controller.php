@@ -7,7 +7,12 @@ class Home_Controller extends CI_Controller{
 	    $this->load->model('config_model');
 		$this->load->model('cat_model');
 		$this->cfg = $this->config_model->get_one();//网站设置
-		$this->menu = $this->cat_model->all('column');//网站导航		
+		$this->menu = $this->cat_model->all('column');//网站导航
+		if($this->cfg['ishtml']){
+			$this->cfg['home_url']='../../index.html';
+		}else{
+			$this->cfg['home_url']='../../index.php';
+		}		
 	}
 	
 }
