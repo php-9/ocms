@@ -7,6 +7,7 @@ class Column extends Admin_Controller
             parent::__construct();
             $this->load->model('page_model');
             $this->load->model('cat_model');
+            //$this->load->model('config_model');
 
 			 
 		}
@@ -59,7 +60,8 @@ class Column extends Admin_Controller
             $data['page']=$this->input->post('page');
             $data['list']=$this->input->post('list');
             $data['doc']=$this->input->post('doc');
-        	
+            
+       	
         	if($this->cat_model->add('column',$data) ){
                 $cat_id=$this->db->insert_id();//获取刚插入的栏目id
                 //栏目为单页,判断是否要添加单页

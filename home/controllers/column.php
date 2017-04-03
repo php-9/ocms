@@ -26,30 +26,46 @@ class Column extends Home_Controller {
 
         if($catSons){//存在下级栏目
                 $data['sideTitle']=$data['cat']['name'];
-                $data['sideCats']=$catSons;
+                $sideCats=$catSons;
 
         }elseif($parent){
                 
                 $data['sideTitle']=$parent['name'];
-                $data['sideCats']=$catThis;                        
+                $sideCats=$catThis;                        
 
         }else{
                  $data['sideTitle']=$data['cat']['name'];
-                 $data['sideCats']=$catThis;                
+                 $sideCats=$catThis;                
         }
+
+        //组织边栏url
+        $sideCats_new=array();
+        foreach ($sideCats as $v) {
+            switch ($v['attr']) {
+                case '2':
+                    $v['url']=$v['elink'].'" target="_blank';
+                    break;
+                case '3':
+                    $v['url']='../../index.php?c=column&m=col&cat_id='.$v['ilink'];
+                    break;
+                
+                default:
+                    $v['url']='../../index.php?c=column&m=col&cat_id='.$v['id'];
+                    break;
+            }
+            
+            $sideCats_new[]=$v;
+        }
+
+
+        $data['sideCats']=$sideCats_new;
 
         switch ($data['cat']['attr']) {
                 case '1'://单页
                     $page=$this->page_model->getRow($catId);//获取单页
                     $data['body']=$page['content'];
                     $this->load->view($data['cat']['page'],$data);
-                    break;
-                case '2'://外链
-                    echo "<script>window.open('".$data['cat']['elink']."');history.back();</script>";//新窗口打开外部链接
-                    break;
-                case '3'://内链
-                    header("Location: ".site_url().'?c=column&m=col&cat_id='.$data['cat']['ilink']);
-                    break;        
+                    break;     
                 
                 default://列表
                     //栏目文章列表
@@ -93,7 +109,15 @@ class Column extends Home_Controller {
                     $this->pagination->initialize($config);
                     $data['pages']=$this->pagination->create_links();
                     //分页
-                    $data['doc']=$this->doc_model->get_all($catId,$pagesize,($pag-1)*$pagesize,$sonArr);                                        
+                    $docs=$this->doc_model->get_all($catId,$pagesize,($pag-1)*$pagesize,$sonArr);//文档
+                    //增加url
+                    $docs_new=array();
+                    foreach ($docs as $v) {
+                        $v['url']='../../index.php?c=column&m=doc&art_id='.$v['id'];//组织文档url
+                        $docs_new[]=$v;
+                    }
+                    $data['doc']=$docs_new;
+
                     $this->load->view($data['cat']['list'],$data);
                     break;
             }    
@@ -125,7 +149,29 @@ class Column extends Home_Controller {
                        
 		}
 		
-		$data['sideCats']=$this->cat_model->getBrothers('column',$data['doc']['cate']);//获取同级分类
+		$sideCats=$this->cat_model->getBrothers('column',$data['doc']['cate']);//获取同级分类
+
+        //组织边栏url
+        $sideCats_new=array();
+        foreach ($sideCats as $v) {
+            switch ($v['attr']) {
+                case '2':
+                    $v['url']=$v['elink'].'" target="_blank';
+                    break;
+                case '3':
+                    $v['url']='../../index.php?c=column&m=col&cat_id='.$v['ilink'];
+                    break;
+                
+                default:
+                    $v['url']='../../index.php?c=column&m=col&cat_id='.$v['id'];
+                    break;
+            }
+            
+            $sideCats_new[]=$v;
+        }
+
+
+        $data['sideCats']=$sideCats_new;
 
 		$this->load->view($data['cat']['doc'],$data);
 	}				

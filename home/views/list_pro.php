@@ -25,7 +25,7 @@
                  <?php foreach($sideCats as $v):?>
                      
                       <li class="<?php if($cat['id']==$v['id']) {echo 'on';}?>" >
-                       <a href="<?=site_url('c=column&m=col&cat_id=').$v['id'];?>"><?=$v['name']?></a>
+                       <a href="<?=$v['url']?>"><?=$v['name']?></a>
                       </li>
                       
                  <?php endforeach;?>
@@ -39,9 +39,9 @@
             <?php foreach($doc as $v):?>
               <li>
                 
-                <h1><a href="<?=site_url('c=column&m=doc&art_id=').$v['id']?>"><img src="<?php if($v['thumbnail']){echo base_url('upload').'/'.$v['thumbnail'];}else{echo 'skins/images/ocms.jpg';}?>" alt="<?=$v['title']?>"></a></h1>
+                <h1><a href="<?=$v['url']?>"><img src="<?php if($v['thumbnail']){echo base_url('upload').'/'.$v['thumbnail'];}else{echo 'skins/images/ocms.jpg';}?>" alt="<?=$v['title']?>"></a></h1>
                
-                <h2><a href="<?=site_url('c=column&m=doc&art_id=').$v['id']?>"><?=$v['title']?></h2>
+                <h2><a href="<?=$v['url']?>"><?=$v['title']?></h2>
                 <h3><?=date('y-m-d', $v['AddTime'])?></h3>
 
               </li>

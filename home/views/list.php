@@ -25,7 +25,7 @@
                  <?php foreach($sideCats as $v):?>
                      
                       <li class="<?php if($cat['id']==$v['id']) {echo 'on';}?>" >
-                       <a href="<?=site_url('c=column&m=col&cat_id=').$v['id'];?>"><?=$v['name']?></a>
+                       <a href="<?=$v['url']?>"><?=$v['name']?></a>
                       </li>
                       
                  <?php endforeach;?>
@@ -38,7 +38,7 @@
             <?php if($doc):?>
             <?php foreach($doc as $v):?>
               <li>
-                <h2><span><?=date('y年m月d日', $v['AddTime'])?></span><a href="<?=site_url('c=column&m=doc&art_id=').$v['id']?>"><?=$v['title']?></a></h2>
+                <h2><span><?=date('y年m月d日', $v['AddTime'])?></span><a href="<?=$v['url']?>"><?=$v['title']?></a></h2>
                 <p><?=  mb_substr(strip_tags($v['content']),0,100,'utf-8').'...';?></p>
 
               </li>

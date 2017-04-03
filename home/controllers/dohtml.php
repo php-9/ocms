@@ -8,7 +8,15 @@ class dohtml extends Home_Controller {
 	public function make_index(){//生成首页
 		ob_start();
 
-		$data['docs']=$this->doc_model->all();//获取所有文档		
+		$docs=$this->doc_model->all();//获取所有文档
+		$docs_new=array();
+		foreach ($docs as $v) {
+			$v['url']='../../html/article_'.$v['id'].'.html';
+			$docs_new[]=$v;
+		}
+
+		//组织url
+		$data['docs']=	$docs_new;	
 		$this->load->view('index',$data);
 
 		if( file_put_contents('./index.html', ob_get_clean()) ){
@@ -66,7 +74,30 @@ class dohtml extends Home_Controller {
                         $data['sideTitle']=$data['cat']['name'];
                        
 		}		
-		$data['sideCats']=$this->cat_model->getBrothers('column',$data['doc']['cate']);//获取同级分类
+		$sideCats=$this->cat_model->getBrothers('column',$data['doc']['cate']);//获取同级分类
+
+
+		//组织边栏url
+		$sideCats_new=array();
+		foreach ($sideCats as $v) {
+		    switch ($v['attr']) {
+		        case '2':
+		            $v['url']=$v['elink'].'" target="_blank';
+		            break;
+		        case '3':
+		            $v['url']='../../html/list_'.$v['ilink'].'_1.html';
+		            break;
+		        
+		        default:
+		            $v['url']='../../html/list_'.$v['id'].'_1.html';
+		            break;
+		    }
+		    
+		    $sideCats_new[]=$v;
+		}
+		//END组织边栏url
+
+		$data['sideCats']=$sideCats_new;
 		$this->load->view($data['cat']['doc'],$data);
 
 		//开始生成
@@ -94,28 +125,48 @@ class dohtml extends Home_Controller {
 
         if($catSons){//存在下级栏目
                 $data['sideTitle']=$data['cat']['name'];
-                $data['sideCats']=$catSons;
+                $sideCats=$catSons;
 
         }elseif($parent){
                 
                 $data['sideTitle']=$parent['name'];
-                $data['sideCats']=$catThis;                        
+                $sideCats=$catThis;                        
 
         }else{
                  $data['sideTitle']=$data['cat']['name'];
-                 $data['sideCats']=$catThis;                
+                 $sideCats=$catThis;                
         }
 
+        //组织边栏url
+        $sideCats_new=array();
+        foreach ($sideCats as $v) {
+        	switch ($v['attr']) {
+        	    case '2':
+        	        $v['url']=$v['elink'].'" target="_blank';
+        	        break;
+        	    case '3':
+        	        $v['url']='../../html/list_'.$v['ilink'].'_1.html';
+        	        break;
+        	    
+        	    default:
+        	        $v['url']='../../html/list_'.$v['id'].'_1.html';
+        	        break;
+        	}
+            
+            $sideCats_new[]=$v;
+        }
+        //END组织边栏url
+        $data['sideCats']=$sideCats_new;
 
 		$data['body']=$page['content'];
 		$this->load->view($data['cat']['page'],$data);
 
 		//开始生成
-		if( file_put_contents("./html/list_{$data['cat']['id']}.html", ob_get_clean()) ){
+		if( file_put_contents("./html/list_{$data['cat']['id']}_1.html", ob_get_clean()) ){
 
-			echo "<p>生成 [list_{$data['cat']['id']}.html] 单页成功.</p>";
+			echo "<p>生成 [list_{$data['cat']['id']}_1.html] 单页成功.</p>";
 		}else{
-			echo "<p>生成 [list_{$data['cat']['id']}.html] 单页失败.</p>";
+			echo "<p>生成 [list_{$data['cat']['id']}_1.html] 单页失败.</p>";
 		}
 	}
 
@@ -134,18 +185,39 @@ class dohtml extends Home_Controller {
 
 		        if($catSons){//存在下级栏目
 		                $data['sideTitle']=$data['cat']['name'];
-		                $data['sideCats']=$catSons;
+		                $sideCats=$catSons;
 
 		        }elseif($parent){
 		                
 		                $data['sideTitle']=$parent['name'];
-		                $data['sideCats']=$catThis;                        
+		                $sideCats=$catThis;                        
 
 		        }else{
 		                 $data['sideTitle']=$data['cat']['name'];
-		                 $data['sideCats']=$catThis;                
+		                 $sideCats=$catThis;                
 		        }
 
+
+		        //组织边栏url
+		        $sideCats_new=array();
+		        foreach ($sideCats as $v) {
+		        	switch ($v['attr']) {
+		        	    case '2':
+		        	        $v['url']=$v['elink'].'" target="_blank';
+		        	        break;
+		        	    case '3':
+		        	        $v['url']='../../html/list_'.$v['ilink'].'_1.html';
+		        	        break;
+		        	    
+		        	    default:
+		        	        $v['url']='../../html/list_'.$v['id'].'_1.html';
+		        	        break;
+		        	}
+		            
+		            $sideCats_new[]=$v;
+		        }
+		        //END组织边栏url
+		         $data['sideCats']=$sideCats_new;
 
             	//栏目文章列表
                 //当前栏目的子孙栏目                 
@@ -166,52 +238,64 @@ class dohtml extends Home_Controller {
 
 				$nums= intval( floor($allnums/$pagesize) );//页数
 				
-				for($i=1;$i<=$nums;$i++){
-					ob_start();	
-					$this->load->library('pagination');					
-					$config['dohtml']="ok";
-					$config['suffix']='.html';
-					$config['p']=$i;									
-					$config['use_page_numbers'] = TRUE;
-					$config['num_links'] = 2;
-					$config['base_url']="../../html/list_{$id}_";
-					$config['total_rows']=$allnums;//记录总数
-					$config['per_page']=$pagesize;		
-					$config['full_tag_open'] ="<div class='page'>";
-		        	$config['full_tag_close'] ="</div>";
-					$config['first_link'] = false;
-					$config['last_link'] = false;
-			        $config['full_tag_open'] = '<ul>';
-			        $config['full_tag_close'] = '</ul>';
-			        $config['cur_tag_open'] = '<li class="active"><a>';
-			        $config['cur_tag_close'] = '</a></li>';
-			        $config['num_tag_open'] = '<li>';
-			        $config['num_tag_close'] = '</li>';
-			        $config['prev_tag_open'] = '<li>';
-			        $config['prev_tag_close'] = '</li>';
-			        $config['next_tag_open'] = '<li>';
-			        $config['next_tag_close'] = '</li>';
-			        $config['first_link'] = '首页';
-			        $config['first_tag_open'] = '<li>';
-			        $config['first_tag_close'] = '</li>';
-			        $config['last_link'] = '末页';
-			        $config['last_tag_open'] = '<li>';
-			        $config['last_tag_close'] = '</li>';
-		    		$this->pagination->initialize($config);            		
-		    		$data['pages']=$this->pagination->create_links();
-		    		//分页
-	        	    $data['doc']=$this->doc_model->get_all($id,$pagesize,($i-1)*$pagesize,$sonArr);
-					$data['body']='';
-					$this->load->view($data['cat']['list'],$data);
-					//开始生成
-					if( file_put_contents("./html/list_{$data['cat']['id']}_{$i}.html", ob_get_clean()) ){
+				$i=1;//内循环变量
+				do {
+						ob_start();	
+						$this->load->library('pagination');					
+						$config['dohtml']="ok";
+						$config['suffix']='.html';
+						$config['p']=$i;									
+						$config['use_page_numbers'] = TRUE;
+						$config['num_links'] = 2;
+						$config['base_url']="../../html/list_{$id}_";
+						$config['total_rows']=$allnums;//记录总数
+						$config['per_page']=$pagesize;		
+						$config['full_tag_open'] ="<div class='page'>";
+			        	$config['full_tag_close'] ="</div>";
+						$config['first_link'] = false;
+						$config['last_link'] = false;
+				        $config['full_tag_open'] = '<ul>';
+				        $config['full_tag_close'] = '</ul>';
+				        $config['cur_tag_open'] = '<li class="active"><a>';
+				        $config['cur_tag_close'] = '</a></li>';
+				        $config['num_tag_open'] = '<li>';
+				        $config['num_tag_close'] = '</li>';
+				        $config['prev_tag_open'] = '<li>';
+				        $config['prev_tag_close'] = '</li>';
+				        $config['next_tag_open'] = '<li>';
+				        $config['next_tag_close'] = '</li>';
+				        $config['first_link'] = '首页';
+				        $config['first_tag_open'] = '<li>';
+				        $config['first_tag_close'] = '</li>';
+				        $config['last_link'] = '末页';
+				        $config['last_tag_open'] = '<li>';
+				        $config['last_tag_close'] = '</li>';
+			    		$this->pagination->initialize($config);            		
+			    		$data['pages']=$this->pagination->create_links();
+			    		//分页
+		        	    $docs=$this->doc_model->get_all($id,$pagesize,($i-1)*$pagesize,$sonArr);
 
-						echo "<p>生成 [list_{$data['cat']['id']}_{$i}.html] 列表页成功.</p>";
-					}else{
-						echo "<p>生成 [list_{$data['cat']['id']}_{$i}.html] 列表页失败.</p>";
-					}
-					
-				}
+		        	    //组织文章url
+		        	    $docs_new=array();
+		        	    foreach ($docs as $v) {
+		        	    	$v['url']='../../html/article_'.$v['id'].'.html';
+		        	    	$docs_new[]=$v;
+		        	    }
+		        	    //END组织边栏url
+		        	    $data['doc']=$docs_new;
+
+
+						$data['body']='';
+						$this->load->view($data['cat']['list'],$data);
+						//开始生成
+						if( file_put_contents("./html/list_{$data['cat']['id']}_{$i}.html", ob_get_clean()) ){
+
+							echo "<p>生成 [list_{$data['cat']['id']}_{$i}.html] 列表页成功.</p>";
+						}else{
+							echo "<p>生成 [list_{$data['cat']['id']}_{$i}.html] 列表页失败.</p>";
+						}
+						$i++;
+				} while ($i<=$nums);
 
 	}
 

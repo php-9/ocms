@@ -25,7 +25,7 @@
                  <?php foreach($sideCats as $v):?>
                      
                       <li class="<?php if($doc['cate']==$v['id']) {echo 'on';}?>" >
-                       <a href="<?=site_url('c=column&m=col&cat_id=').$v['id'];?>"><?=$v['name']?></a>
+                       <a href="<?=$v['url'];?>"><?=$v['name']?></a>
                       </li>
                       
                  <?php endforeach;?>
