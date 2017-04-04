@@ -11,7 +11,7 @@ class Welcome extends Home_Controller {
 	}
 	public function index(){		
 		$data['docs']=$this->doc_model->all();//获取所有文档		
-		$this->load->view('index',$data);
+		$this->load->view('index.htm',$data);
 	}
 
 

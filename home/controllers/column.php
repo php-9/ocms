@@ -65,9 +65,15 @@ class Column extends Home_Controller {
                     $page=$this->page_model->getRow($catId);//获取单页
                     $data['body']=$page['content'];
                     $this->load->view($data['cat']['page'],$data);
-                    break;     
+                    break;
+                case '2'://外链
+                    echo '<script>window.open("'.$data['cat']['elink'].'");window.close();</script>';//转到外链
+                    break;
+                case '3';//内链
+                    header('location: '.site_url('c=column&m=col&cat_id=').$data['cat']['ilink']  );//转到内链
+                    break;             
                 
-                default://列表
+                default://0列表
                     //栏目文章列表
                     //当前栏目的子孙栏目                 
                     $catSons=$this->cat_model->all('column',$catId);                

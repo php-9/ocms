@@ -12,7 +12,7 @@
 </head>
 <body>
 
-  <?php $this->load->view('head')?>
+  <?php $this->load->view('head.htm')?>
 
 
 
@@ -34,16 +34,20 @@
           </ul>
       </div>
       <div class="main">
-          <ul class="txt_list">
+          <ul class="thumb_list">
             <?php if($doc):?>
             <?php foreach($doc as $v):?>
               <li>
-                <h2><span><?=date('y年m月d日', $v['AddTime'])?></span><a href="<?=$v['url']?>"><?=$v['title']?></a></h2>
-                <p><?=  mb_substr(strip_tags($v['content']),0,100,'utf-8').'...';?></p>
+                
+                <h1><a href="<?=$v['url']?>"><img src="<?php if($v['thumbnail']){echo base_url('upload').'/'.$v['thumbnail'];}else{echo 'skins/images/ocms.jpg';}?>" alt="<?=$v['title']?>"></a></h1>
+               
+                <h2><a href="<?=$v['url']?>"><?=$v['title']?></h2>
+                <h3><?=date('y-m-d', $v['AddTime'])?></h3>
 
               </li>
             <?php endforeach;?>
             <?php endif;?>
+              <div class="c"></div>
           </ul>
           <div class="pages">
               <?php echo $pages;?>
@@ -67,7 +71,7 @@
 
 
 
-<?php $this->load->view('foot')?>
+<?php $this->load->view('foot.htm')?>
 </body>
 </html>
 
